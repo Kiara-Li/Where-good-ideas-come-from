@@ -174,7 +174,7 @@ line-height: normal;
   margin-right: 10px;
 }
 .word {
-  font-size: 30px;
+  font-size: 3rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -253,6 +253,7 @@ line-height: normal;
       justify-content: center;
       align-items: center;
       text-align: center;
+      width: 99%;
   }
 
   .word-container {
