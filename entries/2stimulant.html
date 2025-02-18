@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STIMULANT</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/entries.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Zen+Dots&display=swap" rel="stylesheet">
+</head>
+<style>
+    .div1{
+        /* 适用于大屏幕 */
+        grid-area: 1 / 1 / 8 / 36;
+    font-size: calc(2.5vw + 40px); /* 根据屏幕宽度变化字体 */
+  }
+  
+  /* 当屏幕宽度小于 1024px（进入手机布局）时 */
+  @media (max-width: 1024px) {
+    .parent {
+      grid-template-columns: repeat(10, 1fr);
+      grid-template-rows: repeat(46, 1fr);
+    }
+  
+    .div1 {
+      grid-area: 1 / 1 /8/ 6;
+  
+      /* 让字体大小基于网格宽度变化，保证缩放时仍然协调 */
+      font-size: calc(6vw);
+    }
+}
+</style>
+<body>
+    <div class="parent">
+        <div class="div1">
+            <p>STIMULANT</p>
+        </div>
+        <div class="div2">
+            <a href="1coffee.html" class="badge-link">
+                <div class="badge"><p>BACK</p></div>
+            </a>
+            <span class="outline" id="eurekaBtn">EUREKA</span>
+        </div>
+        <div class="div5">
+            <div id="content">
+                <p id="text0"><span class="trigger-word owo" data-target="text1"> What we now call the Enlightenment.</span></p>
+                <p id="text1" class="hidden-text">
+                    And the coffeehouse played such a big role in the birth of the <span class="trigger-word" data-target="text2">Enlightenment</span> in part because of what people were drinking there. Because, before the spread of coffee and tea through British culture, what people drank -- both elite and mass folks drank -- day in and day out, from dawn until dusk, was alcohol. 
+                </p>
+                <p id="hint1" class="hint">A period of (intellectual progress).</p>
+        
+                <p id="text2" class="hidden-text">
+                    <span class="trigger-word" data-target="text3">Alcohol</span> was the daytime beverage of choice. You would drink a little beer with breakfast and have a little wine at lunch, a little gin, particularly around 1650, and top it off with a little beer and wine at the end of the day. 
+                </p>
+                <p id="hint2" class="hint">A common (daily beverage).</p>
+
+                <p id="text3" class="hidden-text">
+                    That was the healthy choice, because the water wasn't safe to drink. And so, effectively, until the rise of the coffeehouse, you had an entire population that was effectively <span class="trigger-word" data-target="text4">drunk</span> all day.
+                </p>
+                <p id="hint3" class="hint">The state of being (intoxicated all day).</p>
+
+                <p id="text4" class="hidden-text">
+                    And you can <span class="trigger-word" data-target="text5">imagine</span> what that would be like in your own life -- and I know this is true of some of you -- if you were drinking all day —
+                </p>
+                <p id="hint4" class="hint">Think about what this would be like in (your own life).</p>
+                
+                <p id="text5" class="hidden-text">
+                    and then you switched from a depressant to a stimulant in your life. You would have better ideas. You would be sharper and more alert. So it's not an accident that a great flowering of innovation happened as England switched to tea and coffee.
+                </p>
+        
+            </div>
+            <button id="nextPage" onclick="window.location.href='3environment.html'">Next</button>
+            <div class="word" onclick="showInfo(this, 'A chaotic (space) is better for innovation than a quiet lab.','3environment.html')" data-index="5">ENVIRONMENT</div><br>
+        </div>
+    </div>
+
+</body>
+ <script>
+function showInfo(element, text, url) {
+    let existingBox = element.nextElementSibling;
+
+    // 获取当前单词的 data-index 值
+    let originalIndex = element.getAttribute('data-index');
+
+    // 如果已经存在 info-box，则删除它并恢复原来的 data-index
+    if (existingBox && existingBox.classList.contains('info-box')) {
+        existingBox.remove();
+        element.setAttribute('data-index', originalIndex); // 恢复原数字
+        return;
+    }
+
+    // 先恢复所有单词的 data-index，防止多个打开时混乱
+    document.querySelectorAll('.word').forEach(word => {
+        let index = word.getAttribute('data-index-original') || word.getAttribute('data-index');
+        word.setAttribute('data-index', index);
+    });
+
+    // 创建新的 info-box
+    let infoBox = document.createElement('div');
+    infoBox.className = 'info-box show';
+    
+    // 创建一个链接，点击后跳转
+    let link = document.createElement('a');
+    link.href = url;  // 跳转链接
+    link.target = '_blank'; // 在新标签页打开链接
+    link.innerHTML = text;  // 展开显示的文本
+    
+    // 把链接添加到 info-box
+    infoBox.appendChild(link);
+
+    // 插入到 .word 下方
+    element.parentNode.insertBefore(infoBox, element.nextSibling);
+
+    // 把 data-index 改成 `>`
+    element.setAttribute('data-index-original', originalIndex); // 记录原始值
+    element.setAttribute('data-index', '>'); 
+    
+}
+</script>
+<script>
+document.querySelectorAll(".word").forEach(word => {
+    word.addEventListener("click", function() {
+        this.classList.toggle("active");
+    });
+});
+</script>
+<script>
+      let unlockedCount = 0; // 记录解锁的段落数
+        const totalTexts = 5; // 需要解锁的段落总数
+
+        document.addEventListener("click", function(event) {
+            if (event.target.classList.contains("trigger-word")) {
+                let targetId = event.target.getAttribute("data-target");
+                let targetElement = document.getElementById(targetId);
+                let hintElement = document.getElementById("hint" + targetId.replace("text", ""));
+                
+                if (targetElement && targetElement.style.display !== "block") {
+                    targetElement.style.display = "block"; // 显示段落
+                    unlockedCount++; // 增加计数
+                }
+                if (hintElement) {
+                    hintElement.style.display = "block"; // 立即显示提示信息
+                }
+
+                // 当所有文本都解锁时，显示 Next Page 按钮
+                if (unlockedCount === totalTexts) {
+                    document.getElementById("nextPage").style.display = "block";
+                }
+            }
+        });
+</script>
+<script>
+document.querySelectorAll(".trigger-word").forEach(trigger => {
+    trigger.addEventListener("click", function() {
+        let stimulantWord = document.querySelector(".word"); // 选取 STIMULANT 元素
+        if (stimulantWord) {
+            let currentIndex = parseInt(stimulantWord.getAttribute("data-index"), 10);
+            if (!isNaN(currentIndex) && currentIndex > 0) {
+                stimulantWord.setAttribute("data-index", currentIndex - 1);
+            }
+        }
+    });
+});
+
+</script>
+<script>
+    document.getElementById("eurekaBtn").addEventListener("click", function() {
+    document.querySelectorAll(".trigger-word").forEach(word => {
+        word.classList.toggle("highlight");
+    });
+});
+
+</script>
+</html>

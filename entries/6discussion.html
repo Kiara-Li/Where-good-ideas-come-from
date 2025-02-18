@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DISCUSSION</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/entries.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Zen+Dots&display=swap" rel="stylesheet">
+</head>
+<style>
+.div1{
+        /* 适用于大屏幕 */
+        grid-area: 1 / 1 / 8 / 36;
+    font-size: calc(2.5vw + 40px); /* 根据屏幕宽度变化字体 */
+  }
+  
+  /* 当屏幕宽度小于 1024px（进入手机布局）时 */
+  @media (max-width: 1024px) {
+    .parent {
+      grid-template-columns: repeat(10, 1fr);
+      grid-template-rows: repeat(46, 1fr);
+    }
+  
+    .div1 {
+      grid-area: 1 / 1 /8/ 6;
+  
+      /* 让字体大小基于网格宽度变化，保证缩放时仍然协调 */
+      font-size: calc(5vw);
+    }
+}
+</style>
+<body>
+    <div class="parent">
+        <div class="div1">
+            <p>DISCUSSION</p>
+        </div>
+        <div class="div2">
+            <a href="5renovation.html" class="badge-link">
+                <div class="badge"><p>BACK</p></div>
+            </a>
+            <span class="outline" id="eurekaBtn">EUREKA</span>
+        </div>
+        <div class="div5">
+            <div id="content">
+                <p id="text0"><span class="trigger-word" data-target="text1">We take ideas from other people, people we've learned from, people we run into in the coffee shop, and we stitch them together into new forms and we create something new. </span></p>
+                <p id="text1" class="hidden-text">
+                    That's really where <span class="trigger-word" data-target="text2">innovation</span> happens. And that means we have to change some of our models of what innovation and deep thinking really looks like, right? 
+                </p>
+                <p id="hint1" class="hint">The process of (creating something new).</p>
+
+                <p id="text2" class="hidden-text">
+                    I mean, this is one <span class="trigger-word" data-target="text3">vision</span> of it. 
+                <p id="hint2" class="hint">A way of (imagining how ideas form).</p>
+        
+                <p id="text3" class="hidden-text">
+                    Another is Newton and the apple, when Newton was at Cambridge. This is a statue from Oxford. You know, you're sitting there, thinking a deep thought, the apple falls from the tree, and you have the theory of gravity.  In fact, the <span class="trigger-word" data-target="text4">spaces</span> that have historically led to innovation tend to look like this. 
+                </p>
+                <p id="hint3" class="hint">Places that (encourage idea exchange).</p>
+
+                <p id="text4" class="hidden-text">
+                    This is Hogarth's famous painting of a kind of political dinner at a tavern, but this is what the coffee shops looked like back then. This is the kind of chaotic environment where ideas were likely to come together, where people were likely to have new, interesting, unpredictable collisions, people from different backgrounds. So if we're trying to build organizations that are more innovative, we have to build “<span class="trigger-word" data-target="text5">spaces</span> moment.  that, strangely enough, look a bit more like this. This is what your office should look like, it's part of my message here.
+                    spaces: Places that (encourage idea exchange).
+                </p>
+                <p id="hint4" class="hint">Places that (encourage idea exchange).</p>
+                
+
+                <p id="text5" class="hidden-text">
+                    <span class="trigger-word" data-target="text6">And one of the problems with this is that, when you research this field, people are notoriously unreliable when they actually self-report on where they have their own good ideas, or their history of their best ideas.</span>
+
+
+
+
+
+                <p id="text6" class="hidden-text">
+                    <span class="trigger-word" data-target="text7"> 
+                         And a few years ago, a wonderful researcher named Kevin Dunbar decided to go around and basically do the Big Brother approach to figuring out where good ideas come from. He went to a bunch of science labs around the world and videotaped everyone as they were doing every little bit of their job: when they were sitting in front of the microscope, when they were talking to colleagues at the watercooler ... And he recorded all these conversations and tried to figure out where the most important ideas happened. 
+
+                        And when we think about the classic image of the scientist in the lab, we have this image -- you know, they're poring over the microscope, and they see something in the tissue sample, and -- "Eureka!" -- they've got the idea.
+                    </span>
+                </p>
+
+                <p id="text7" class="hidden-text">
+                    What happened, actually, when Dunbar looked at the tape, is that, in fact, almost all of the important breakthrough ideas did not happen alone in the lab, in front of the microscope. They happened at the conference table at the weekly lab meeting, when everybody got together and shared their latest data and findings, oftentimes when people shared the mistakes they were having, the error, the noise in the <span class="trigger-word" data-target="text8">signal</span> they were discovering. 
+                <p id="hint7" class="hint">Important (information or insight).</p>
+                
+                <p id="text8" class="hidden-text">
+                    And something about that environment -- and I've started calling it the "liquid network," where you have lots of different ideas that are together, different backgrounds, different interests, jostling with each other, bouncing off each other -- that environment is, in fact, the environment that leads to innovation.
+                </p>
+        
+            </div>
+            <button id="nextPage" onclick="window.location.href='7incubation.html'">Next</button>
+            <div class="word" onclick="showInfo(this, 'Great ideas require time to (develop) before they emerge.','7incubation.html')" data-index="8">INCUBATION</div><br>
+        </div>
+    </div>
+
+</body>
+ <script>
+function showInfo(element, text, url) {
+    let existingBox = element.nextElementSibling;
+
+    // 获取当前单词的 data-index 值
+    let originalIndex = element.getAttribute('data-index');
+
+    // 如果已经存在 info-box，则删除它并恢复原来的 data-index
+    if (existingBox && existingBox.classList.contains('info-box')) {
+        existingBox.remove();
+        element.setAttribute('data-index', originalIndex); // 恢复原数字
+        return;
+    }
+
+    // 先恢复所有单词的 data-index，防止多个打开时混乱
+    document.querySelectorAll('.word').forEach(word => {
+        let index = word.getAttribute('data-index-original') || word.getAttribute('data-index');
+        word.setAttribute('data-index', index);
+    });
+
+    // 创建新的 info-box
+    let infoBox = document.createElement('div');
+    infoBox.className = 'info-box show';
+    
+    // 创建一个链接，点击后跳转
+    let link = document.createElement('a');
+    link.href = url;  // 跳转链接
+    link.target = '_blank'; // 在新标签页打开链接
+    link.innerHTML = text;  // 展开显示的文本
+    
+    // 把链接添加到 info-box
+    infoBox.appendChild(link);
+
+    // 插入到 .word 下方
+    element.parentNode.insertBefore(infoBox, element.nextSibling);
+
+    // 把 data-index 改成 `>`
+    element.setAttribute('data-index-original', originalIndex); // 记录原始值
+    element.setAttribute('data-index', '>'); 
+    
+}
+</script>
+<script>
+document.querySelectorAll(".word").forEach(word => {
+    word.addEventListener("click", function() {
+        this.classList.toggle("active");
+    });
+});
+</script>
+<script>
+      let unlockedCount = 0; // 记录解锁的段落数
+        const totalTexts = 8; // 需要解锁的段落总数
+
+        document.addEventListener("click", function(event) {
+            if (event.target.classList.contains("trigger-word")) {
+                let targetId = event.target.getAttribute("data-target");
+                let targetElement = document.getElementById(targetId);
+                let hintElement = document.getElementById("hint" + targetId.replace("text", ""));
+                
+                if (targetElement && targetElement.style.display !== "block") {
+                    targetElement.style.display = "block"; // 显示段落
+                    unlockedCount++; // 增加计数
+                }
+                if (hintElement) {
+                    hintElement.style.display = "block"; // 立即显示提示信息
+                }
+
+                // 当所有文本都解锁时，显示 Next Page 按钮
+                if (unlockedCount === totalTexts) {
+                    document.getElementById("nextPage").style.display = "block";
+                }
+            }
+        });
+</script>
+<script>
+document.querySelectorAll(".trigger-word").forEach(trigger => {
+    trigger.addEventListener("click", function() {
+        let stimulantWord = document.querySelector(".word"); // 选取 STIMULANT 元素
+        if (stimulantWord) {
+            let currentIndex = parseInt(stimulantWord.getAttribute("data-index"), 10);
+            if (!isNaN(currentIndex) && currentIndex > 0) {
+                stimulantWord.setAttribute("data-index", currentIndex - 1);
+            }
+        }
+    });
+});
+
+</script>
+<script>
+    document.getElementById("eurekaBtn").addEventListener("click", function() {
+    document.querySelectorAll(".trigger-word").forEach(word => {
+        word.classList.toggle("highlight");
+    });
+});
+
+</script>
+</html>

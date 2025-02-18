@@ -1,0 +1,325 @@
+*{
+    margin:0;
+    padding:0;
+  }
+  body{
+    background: #000000;
+    color: white;
+  }
+  .zen-dots-regular {
+      font-family: "Zen Dots", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+  .space-grotesk {
+      font-family: "Space Grotesk", serif;
+      font-optical-sizing: auto;
+      font-weight:weight;
+      font-style: normal;
+    }
+.parent {
+  display: grid;
+  grid-template-columns: repeat(46, 1fr);
+  grid-template-rows: repeat(46, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+/* 默认桌面版布局 */
+.div1 { grid-area: 1 / 1 / 8 / 36;}
+.div2 { grid-area: 1 / 36 / 8 / 47;}
+.div3 { grid-area: 8 / 1 / 10 / 14; }
+.div4 { grid-area: 8 / 36 / 10 / 47;}
+.div5 { grid-area: 10 / 10 / 38 / 39;}
+
+/* 当屏幕宽度小于 1024px（进入手机布局）时 */
+@media (max-width: 1024px) {
+  .parent {
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(69, 1fr); /* 46 × 1.5 = 69 行 */
+  }
+
+  .div1 { grid-area: 1 / 1 / 11 / 6; }
+  .div2 { grid-area: 4 / 6 / 9 / 11; }
+  .div3 { grid-area: 9 / 1 / 11 / 6; }
+  .div4 { grid-area: 9 / 6 / 11 / 11; }
+  .div5 { grid-area: 11 / 1 / 55 / 11; }/* 纵向范围扩大 */
+}
+
+  .div1 {
+    color: #FFF;
+    font-family: "Zen Dots", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  
+    /* 适用于大屏幕 */
+    grid-area: 1 / 1 / 8 / 36;
+    font-size: calc(2.5vw + 40px); /* 根据屏幕宽度变化字体 */
+  }
+  
+  /* 当屏幕宽度小于 1024px（进入手机布局）时 */
+  @media (max-width: 1024px) {
+    .parent {
+      grid-template-columns: repeat(10, 1fr);
+      grid-template-rows: repeat(46, 1fr);
+    }
+  
+    .div1 {
+      grid-area: 1 / 1 / 11 / 6;
+  
+      /* 让字体大小基于网格宽度变化，保证缩放时仍然协调 */
+      font-size: calc(4vw + 30px);
+    }
+  }
+  .div2 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* 间距 */
+    color: white;
+    flex-grow: 1; /* 让 .div2 在父容器中可以放大 */
+  }
+  
+  .badge, .name, .date, .outline {
+    flex-grow: 1; /* 让这些子元素根据可用空间调整大小 */
+  }
+  
+  /* TED 标志 */
+ /* 徽章 badge */
+.badge {
+    width: 120px; 
+    display: inline-flex;
+    flex-wrap: wrap; /* 适应小屏幕换行 */
+    justify-content: center;
+    align-items: center;
+    gap: 12px; /* 调整间距 */
+    border-radius: 12px;
+    background: white; /* 透明度优化 */
+    color: #000;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(36px, 4vw, 45px);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* 讲者名字 */
+.name {
+    color: white;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(26px, 2vw, 46px);
+    font-weight: 400;
+    text-transform: capitalize;
+    flex-grow: 1;
+}
+
+/* 日期 */
+.date {
+    color: white;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(24px, 2vw, 30px);
+    font-weight: 400;
+    text-transform: uppercase;
+    flex-grow: 1;
+}
+
+/* EUREKA 外框字 */
+.outline {
+    width: 240px; 
+    display: inline-flex; 
+    font-size: clamp(36px, 4vw, 45px);
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: bold;
+    padding: 4px 10px; 
+    border: 2px solid white;
+    border-radius: 12px;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 2px white;
+    transition: all 0.3s ease-in-out; 
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* 鼠标悬停效果 */
+.outline:hover {
+    color: white;
+}
+
+/* 适配大屏幕 */
+@media (min-width: 1200px) {
+    .badge {
+        padding: 12px 30px;
+        gap: 20px;
+    }
+
+    .outline {
+        font-size: 60px;
+        padding: 10px 20px;
+    }
+}
+
+  .div4 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* 间距 */
+    color: white;
+    flex-grow: 1; /* 让 .div2 在父容器中可以放大 */
+  }
+
+.div5{
+    display: flex;           /* 使用 Flexbox */
+    flex-direction: column;  /* 垂直排列单词 */
+    justify-content: center; /* 垂直居中 */
+    align-items: center;     /* 水平居中 */
+    text-align: center;      /* 确保单词本身居中 */
+    min-height: 100vh;  
+    height:auto;
+    
+}
+.word {
+    display: inline-block;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-family: "Zen Dots";
+    font-size: 9vw; 
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    position: relative;
+    cursor: pointer;
+    color: transparent; /* 让文字本身透明 */
+    -webkit-text-stroke: 2px white; /* 设置白色描边 */
+    
+    padding-right: 40px; /* 预留空间给小方块 */
+}
+
+/* 当屏幕宽度大于 1024px（桌面版布局时） */
+@media (min-width: 1024px) {
+    .word {
+      font-size: 4vw; /* 调整字体大小适应桌面版 */
+    }
+  }
+/* 小方块样式 */
+.word::after {
+    content: attr(data-index); /* 读取自定义属性 data-index */
+    display: inline-flex;
+    font-family:Space Grotesk;
+    align-items: center;
+    justify-content: center;
+    background: transparent; /* 透明背景 */
+    border: 2px solid #FFF; 
+    color: #FFF;
+    font-size: 0.3em;
+    border-radius: 4px;
+    position: absolute;
+    right: 3;
+    top: 50%;
+    transform: translateY(-50%);
+    flex-shrink: 0;
+
+    /* 初始设置 */
+    width: 10vw; /* 设定一个与字体大小相关的大小 */
+    height: 10vw;
+}
+.word::after {
+    content: attr(data-index);
+    transition: content 0.2s ease-in-out;
+}
+
+/* 如果 info-box 存在，就让 `::after` 变成 `>` */
+.word:has(+ .info-box)::after {
+    content: ">";
+}
+
+
+
+/* 当屏幕宽度大于 1024px（桌面版布局时） */
+@media (min-width: 1024px) {
+  .word::after {
+    width: 2vw; /* 设定一个与字体大小相关的大小 */
+    height: 2vw;
+  }
+}
+
+/* 当屏幕宽度小于 1024px（手机布局）时 */
+@media (max-width: 1024px) {
+  .word::after {
+    width: 6vw; /* 手机屏幕使用默认大小 */
+    height: 6vw;
+  }
+}
+.info-box {
+    font-family: "Space Grotesk", serif;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    color: white;
+    border: 2px solid #FFF; 
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    text-align: center;
+    width: 90%; /* 让宽度随着屏幕变化 */
+    max-width: 800px; /* 让它在大屏幕上可以更宽 */
+    justify-content: center;
+}
+.info-box .content {
+    text-align: center;
+}
+.info-box.show {
+    display: flex;
+    animation: fadeIn 0.3s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+a {
+    text-decoration: none; /* 去掉下划线 */
+    color: inherit; /* 继承父元素的颜色 */
+    background: none;
+    border: none;
+    outline: none;
+    display: inline-block; /* 让它仍然可以点击 */
+}
+/* 描边样式 */
+.word.outlined {
+    -webkit-text-stroke: 2px white;  /* 添加白色描边 */
+    color: transparent; /* 文字透明 */
+}
+
+.word.active {
+    color: white;
+    -webkit-text-stroke: 0px;
+}
+.div4 {
+    overflow: hidden; /* 隐藏溢出的部分 */
+    white-space: nowrap; /* 防止文字换行 */
+    padding: 10px;
+    font-family:"Space Grotesk", serif;
+    font-size: larger;
+}
+
+.marquee {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 10s linear infinite; /* 10s 内完成一轮滚动 */
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+

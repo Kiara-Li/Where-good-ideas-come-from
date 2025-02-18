@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RENOVATION</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/entries.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Zen+Dots&display=swap" rel="stylesheet">
+</head>
+<style>
+    .div1{
+        /* 适用于大屏幕 */
+        grid-area: 1 / 1 / 8 / 36;
+    font-size: calc(2.5vw + 40px); /* 根据屏幕宽度变化字体 */
+  }
+  
+  /* 当屏幕宽度小于 1024px（进入手机布局）时 */
+  @media (max-width: 1024px) {
+    .parent {
+      grid-template-columns: repeat(10, 1fr);
+      grid-template-rows: repeat(46, 1fr);
+    }
+  
+    .div1 {
+      grid-area: 1 / 1 /8/ 6;
+  
+      /* 让字体大小基于网格宽度变化，保证缩放时仍然协调 */
+      font-size: calc(5vw);
+    }
+}
+</style>
+<body>
+    <div class="parent">
+        <div class="div1">
+            <p>RENOVATION</p>
+        </div>
+        <div class="div2">
+            <a href="4network.html" class="badge-link">
+                <div class="badge"><p>BACK</p></div>
+            </a>
+            <span class="outline" id="eurekaBtn">EUREKA</span>
+        </div>
+        <div class="div5">
+            <div id="content">
+                <p id="text0"><span class="trigger-word" data-target="text1">And it turns out that, in fact, the network patterns of the outside world mimic a lot of the network patterns of the internal world of a human brain.</span></p>
+                <p id="text1" class="hidden-text">
+                    So the <span class="trigger-word owo" data-target="text2">metaphor</span> I'd like to use, I can take from a story of a great idea that's quite recent -- a lot more recent than the 1650s. 
+                </p>
+                <p id="hint1" class="hint">A way to (explain an idea through comparison).</p>
+        
+                <p id="text2" class="hidden-text">
+                    <span class="trigger-word" data-target="text3">A wonderful guy named Timothy Prestero has an organization called Design That Matters. They decided to tackle this really pressing problem of the terrible problems we have with infant mortality rates in the developing world. 
+                    </span>
+                </p>
+                <p id="text3" class="hidden-text">
+                    <span class="trigger-word" data-target="text4">One of the things that's very frustrating about this is that we know by getting modern neonatal incubators into any context, if we can keep premature babies warm, basically -- it's very simple -- we can halve infant mortality rates in those environments. So the technology is there. These are standard in all the industrialized worlds. 
+                    </span>
+                </p>
+                <p id="text4" class="hidden-text">
+                    <span class="trigger-word" data-target="text5">The problem is, if you buy a $40,000 incubator, and you send it off to a midsized village in Africa, it will work great for a year or two years, and then something will go wrong and it will break, and it will remain broken forever, because you don't have a whole system of spare parts, and you don't have the on-the-ground expertise to fix this $40,000 piece of equipment. 
+                    </span>
+                </p>
+                <p id="text5" class="hidden-text">
+                    <span class="trigger-word" data-target="text6">So you end up having this problem where you spend all this money getting aid and all these advanced electronics to these countries, and it ends up being useless.
+                    </span>
+                </p>
+                <p id="text6" class="hidden-text">
+                    <span class="trigger-word" data-target="text7">So what Prestero and his team decided to do was to look around and see: What are the abundant resources in these developing world contexts? 
+                    </span>
+                </p>
+
+                <p id="text7" class="hidden-text">
+                    <span class="trigger-word" data-target="text8">And what they noticed was, they don't have a lot of DVRs, they don't have a lot of microwaves, but they seem to do a pretty good job of keeping their cars on the road. There's a Toyota 4Runner on the street in all these places. They seem to have the expertise to keep cars working. 
+                    </span>
+                </p>
+
+                <p id="text8" class="hidden-text">
+                    <span class="trigger-word" data-target="text9">So they started to think, "Could we build a neonatal incubator that's built entirely out of automobile parts?" And this is what they came up with. It's called the NeoNurture device. 
+                    </span>
+                </p>
+
+                <p id="text9" class="hidden-text">
+                    <span class="trigger-word" data-target="text10">From the outside, it looks like a normal little thing you'd find in a modern Western hospital. In the inside, it's all car parts. It's got a fan, it's got headlights for warmth, it's got door chimes for alarm, it runs off a car battery. And so all you need is the spare parts from your Toyota and the ability to fix a headlight, and you can repair this thing. 
+                    </span>
+                </p>
+
+                <p id="text10" class="hidden-text">
+                    Now that's a great idea, but I'd like to say that, in fact, this is a great <span class="trigger-word owo" data-target="text11">metaphor</span> for the way ideas happen. We like to think our breakthrough ideas, you know, are like that $40,000, brand-new incubator, state-of-the-art technology. 
+                </p>
+                <p id="hint10" class="hint">A way to (explain an idea through comparison).</p>
+                
+                <p id="text11" class="hidden-text">
+                    But more often than not, they're cobbled together from whatever parts that happen to be around nearby.
+                </p>
+        
+            </div>
+            <button id="nextPage" onclick="window.location.href='6discussion.html'">Next</button>
+            <div class="word" onclick="showInfo(this, 'Scientists generate new ideas through (sharing) of mistakes.','6discussion.html')" data-index="11">DISCUSSION</div><br>
+        </div>
+    </div>
+
+</body>
+ <script>
+function showInfo(element, text, url) {
+    let existingBox = element.nextElementSibling;
+
+    // 获取当前单词的 data-index 值
+    let originalIndex = element.getAttribute('data-index');
+
+    // 如果已经存在 info-box，则删除它并恢复原来的 data-index
+    if (existingBox && existingBox.classList.contains('info-box')) {
+        existingBox.remove();
+        element.setAttribute('data-index', originalIndex); // 恢复原数字
+        return;
+    }
+
+    // 先恢复所有单词的 data-index，防止多个打开时混乱
+    document.querySelectorAll('.word').forEach(word => {
+        let index = word.getAttribute('data-index-original') || word.getAttribute('data-index');
+        word.setAttribute('data-index', index);
+    });
+
+    // 创建新的 info-box
+    let infoBox = document.createElement('div');
+    infoBox.className = 'info-box show';
+    
+    // 创建一个链接，点击后跳转
+    let link = document.createElement('a');
+    link.href = url;  // 跳转链接
+    link.target = '_blank'; // 在新标签页打开链接
+    link.innerHTML = text;  // 展开显示的文本
+    
+    // 把链接添加到 info-box
+    infoBox.appendChild(link);
+
+    // 插入到 .word 下方
+    element.parentNode.insertBefore(infoBox, element.nextSibling);
+
+    // 把 data-index 改成 `>`
+    element.setAttribute('data-index-original', originalIndex); // 记录原始值
+    element.setAttribute('data-index', '>'); 
+    
+}
+</script>
+<script>
+document.querySelectorAll(".word").forEach(word => {
+    word.addEventListener("click", function() {
+        this.classList.toggle("active");
+    });
+});
+</script>
+<script>
+      let unlockedCount = 0; // 记录解锁的段落数
+        const totalTexts = 11; // 需要解锁的段落总数
+
+        document.addEventListener("click", function(event) {
+            if (event.target.classList.contains("trigger-word")) {
+                let targetId = event.target.getAttribute("data-target");
+                let targetElement = document.getElementById(targetId);
+                let hintElement = document.getElementById("hint" + targetId.replace("text", ""));
+                
+                if (targetElement && targetElement.style.display !== "block") {
+                    targetElement.style.display = "block"; // 显示段落
+                    unlockedCount++; // 增加计数
+                }
+                if (hintElement) {
+                    hintElement.style.display = "block"; // 立即显示提示信息
+                }
+
+                // 当所有文本都解锁时，显示 Next Page 按钮
+                if (unlockedCount === totalTexts) {
+                    document.getElementById("nextPage").style.display = "block";
+                }
+            }
+        });
+</script>
+<script>
+document.querySelectorAll(".trigger-word").forEach(trigger => {
+    trigger.addEventListener("click", function() {
+        let stimulantWord = document.querySelector(".word"); // 选取 STIMULANT 元素
+        if (stimulantWord) {
+            let currentIndex = parseInt(stimulantWord.getAttribute("data-index"), 10);
+            if (!isNaN(currentIndex) && currentIndex > 0) {
+                stimulantWord.setAttribute("data-index", currentIndex - 1);
+            }
+        }
+    });
+});
+
+</script>
+<script>
+    document.getElementById("eurekaBtn").addEventListener("click", function() {
+    document.querySelectorAll(".trigger-word").forEach(word => {
+        word.classList.toggle("highlight");
+    });
+});
+
+</script>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where good ideas come from?</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Zen+Dots&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="parent">
+        <div class="div1">
+            <p>where good ideas come from?</p>
+        </div>
+        <div class="div2">
+            <div class="badge"><p>TED</p></div>
+            <p class="name">Steven Johnson</p>
+            <p class="date">SEP 21, 2010</p>
+            <span class="outline">EUREKA</span>
+        </div>
+        <div class="div4">
+            <div class="marquee">
+                <span>“Voila!" “Eureka!" “Bingo!" </span>
+            </div>
+        </div>
+        <div class="div5">
+            <div class="div5">
+                <div class="word" onclick="showInfo(this, 'The (drink) that fueled the Enlightenment.','entries/1coffee.html')" data-index="1">COFFEE</div><br>
+                <div class="word" onclick="showInfo(this, 'A substance that keeps you (awake and alert).','entries/2stimulant.html')" data-index="2">STIMULANT</div><br>
+                <div class="word" onclick="showInfo(this, ' A chaotic (space) is better for innovation than a quiet lab.','entries/3environment.html')" data-index="3">ENVIRONMENT</div><br>
+                <div class="word" onclick="showInfo(this, 'Creativity is not a single moment but a (web) of connections.','entries/4network.html')" data-index="4">NETWORK</div><br>
+                <div class="word" onclick="showInfo(this, 'Innovation is about finding new ways to (transform) existing materials.','entries/5renovation.html')" data-index="5">Renovation</div><br>
+                <div class="word" onclick="showInfo(this, 'Scientists generate new ideas through (sharing) of mistakes.','entries/6discussion.html')" data-index="6">discussion</div><br>
+                <div class="word" onclick="showInfo(this, 'Great ideas require time to (develop) before they emerge.','entries/7incubation.html')" data-index="7">incubation</div><br>
+                <div class="word" onclick="showInfo(this, 'Innovation thrives on (collaboration), not protection.','entries/8contribution.html')" data-index="8">Contribution</div><br>
+                <div class="word" onclick="showInfo(this, 'Accidental discoveries like GPS are an example of (sudden understanding).','entries/9insight.html')" data-index="9">insight</div><br>
+                <div class="word" onclick="showInfo(this, 'Creative spark occurs when ideas (come) together.','entries/10collision.html')" data-index="10">collision</div><br>
+            </div>
+        </div>
+    </div>
+
+</body>
+ <script>
+function showInfo(element, text, url) {
+    let existingBox = element.nextElementSibling;
+
+    // 获取当前单词的 data-index 值
+    let originalIndex = element.getAttribute('data-index');
+
+    // 如果已经存在 info-box，则删除它并恢复原来的 data-index
+    if (existingBox && existingBox.classList.contains('info-box')) {
+        existingBox.remove();
+        element.setAttribute('data-index', originalIndex); // 恢复原数字
+        return;
+    }
+
+    // 先恢复所有单词的 data-index，防止多个打开时混乱
+    document.querySelectorAll('.word').forEach(word => {
+        let index = word.getAttribute('data-index-original') || word.getAttribute('data-index');
+        word.setAttribute('data-index', index);
+    });
+
+    // 创建新的 info-box
+    let infoBox = document.createElement('div');
+    infoBox.className = 'info-box show';
+    
+    // 创建一个链接，点击后跳转
+    let link = document.createElement('a');
+    link.href = url;  // 跳转链接
+    link.target = '_blank'; // 在新标签页打开链接
+    link.innerHTML = text;  // 展开显示的文本
+    
+    // 把链接添加到 info-box
+    infoBox.appendChild(link);
+
+    // 插入到 .word 下方
+    element.parentNode.insertBefore(infoBox, element.nextSibling);
+
+    // 把 data-index 改成 `>`
+    element.setAttribute('data-index-original', originalIndex); // 记录原始值
+    element.setAttribute('data-index', '>'); 
+    
+}
+</script>
+<script>
+document.querySelectorAll(".word").forEach(word => {
+    word.addEventListener("click", function() {
+        this.classList.toggle("active");
+    });
+});
+</script>
+</html>

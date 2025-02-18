@@ -1,0 +1,143 @@
+/* 默认桌面版布局 */
+.div1 { grid-area: 1 / 1 / 4 / 36;}
+.div2 { grid-area: 1 / 36 / 4 / 47;}
+.div3 { grid-area: 8 / 1 / 10 / 14;}
+.div4 { grid-area: 8 / 36 / 10 / 47;}
+.div5 { grid-area: 6 / 10 / 38 / 39;}
+
+/* 当屏幕宽度小于 1024px（进入手机布局）时 */
+@media (max-width: 1024px) {
+  .parent {
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(69, 1fr); /* 46 × 1.5 = 69 行 */
+  }
+
+  .div1 { grid-area: 1 / 1 / 6 / 6; }
+  .div2 { grid-area: 1 / 6 / 5 / 11; }
+  .div3 { grid-area: 9 / 1 / 11 / 6; }
+  .div4 { grid-area: 9 / 6 / 11 / 11; }
+  .div5 { grid-area: 6/ 1 / 55 / 11; }/* 纵向范围扩大 */
+}
+.hidden-text {
+    display: none;
+}
+.trigger-word {
+    cursor: pointer;
+
+}
+
+.hint {
+    display: none;
+    background-color:transparent;
+    font-family: "Space Grotesk", serif;
+    align-items: center;
+    background: transparent;
+    color: white;
+    border: 2px solid #FFF; 
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    text-align: center;
+    width: 90%; /* 让宽度随着屏幕变化 */
+    max-width: 800px; /* 让它在大屏幕上可以更宽 */
+    justify-content: center;
+}
+#nextPage {
+    display: none;
+    width: 240px; 
+    margin-top: 20px;
+    padding: 4px 10px; 
+    font-size: clamp(36px, 4vw, 45px);
+    font-family: "Space Grotesk", sans-serif;
+    border: 2px solid white;
+    border-radius: 12px;
+    font-weight: bold;
+    background-color: black;
+    color: transparent;
+    cursor: pointer;
+    border-radius: 5px;
+    text-transform: uppercase;
+    -webkit-text-stroke: 2px white;
+    transition: all 0.3s ease-in-out;
+    align-items: center;
+}
+#nextPage:hover {
+    color: white;
+}
+
+/* 适配大屏幕 */
+@media (min-width: 1200px) {
+    .badge {
+        padding: 12px 30px;
+        gap: 20px;
+    }
+
+    .outline {
+        font-size: 60px;
+        padding: 10px 20px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.outline {
+    width: 160px; 
+    display: inline-flex; 
+    font-size: clamp(36px, 4vw, 45px);
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: bold;
+    padding: 4px 10px; 
+    border: 2px solid white;
+    border-radius: 12px;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 2px white;
+    transition: all 0.3s ease-in-out; 
+    justify-content: center;
+    align-items: center;
+}
+.div5 {
+    text-align: left;
+    display: block;
+    padding-top: 2em;
+}
+#text0, #text1, #text2, #text3, #text4, #text5, #text6, #text7, #text8, #text9, #text10, #text11{
+    margin-left: 20px;
+    margin-top: 20px;  /* 添加段落顶部的空隙 */
+    font-size: clamp(0.5em, 5vw, 2em);
+    font-family: "Space Grotesk", serif;
+}
+
+.owo{
+    font-weight: bold;
+    transition: color 0.3s ease;
+    font-family: "Zen Dots", serif;
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+
+}
+
+.highlight {
+    font-weight: bold;
+    transition: color 0.3s ease;
+    font-family: "Zen Dots", serif;
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+
+}
