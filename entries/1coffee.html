@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Zen+Dots&display=swap" rel="stylesheet">
+    <script src="arrow.js"></script>
 </head>
 <style>
     /* 当屏幕宽度小于 1024px（进入手机布局）时 */
@@ -170,5 +171,20 @@ document.querySelectorAll(".trigger-word").forEach(trigger => {
     });
 });
 
+</script>
+<script>
+    document.querySelectorAll(".owo").forEach(element => {
+    element.addEventListener("click", function () {
+        this.style.animation = "none"; // 移除动画
+        this.style.webkitTextStroke = "1px rgba(255, 255, 255, 1)"; // 保持点亮状态
+    });
+});
+</script>
+<script>
+    document.querySelectorAll(".trigger-word").forEach(element => {
+    element.addEventListener("click", function () {
+        this.classList.add("clicked-word"); // 添加样式，变成描边效果
+    });
+});
 </script>
 </html>

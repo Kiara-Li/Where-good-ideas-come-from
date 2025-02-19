@@ -195,4 +195,19 @@ document.querySelectorAll(".trigger-word").forEach(trigger => {
 });
 
 </script>
+<script>
+    document.querySelectorAll(".owo").forEach(element => {
+    element.addEventListener("click", function () {
+        this.style.animation = "none"; // 移除动画
+        this.style.webkitTextStroke = "1px rgba(255, 255, 255, 1)"; // 保持点亮状态
+    });
+});
+</script>
+<script>
+    document.querySelectorAll(".trigger-word").forEach(element => {
+    element.addEventListener("click", function () {
+        this.classList.add("clicked-word"); // 添加样式，变成描边效果
+    });
+});
+</script>
 </html>

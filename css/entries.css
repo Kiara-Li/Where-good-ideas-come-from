@@ -26,6 +26,15 @@
 
 }
 
+/* 点击后变成空心描边效果 */
+.trigger-word.clicked-word {
+    font-weight: bold;
+    font-family: "Zen Dots", serif;
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+    transition: -webkit-text-stroke 0.3s ease;
+}
+
 .hint {
     display: none;
     background-color:transparent;
@@ -115,22 +124,32 @@
 .div5 {
     text-align: left;
     display: block;
-    padding-top: 2em;
+    padding-top: 1.5em;
 }
 #text0, #text1, #text2, #text3, #text4, #text5, #text6, #text7, #text8, #text9, #text10, #text11{
-    margin-left: 20px;
-    margin-top: 20px;  /* 添加段落顶部的空隙 */
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 2em;  /* 添加段落顶部的空隙 */
     font-size: clamp(0.5em, 5vw, 2em);
     font-family: "Space Grotesk", serif;
 }
 
-.owo{
+.owo {
     font-weight: bold;
-    transition: color 0.3s ease;
     font-family: "Zen Dots", serif;
     color: transparent;
-    -webkit-text-stroke: 1px white;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
+    animation: glowEffect 2s ease-in-out infinite alternate;
+}
 
+/* 让描边颜色慢慢变化，制造柔和的亮度变化 */
+@keyframes glowEffect {
+    0% {
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+    }
+    100% {
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 1);
+    }
 }
 
 .highlight {
@@ -141,3 +160,5 @@
     -webkit-text-stroke: 1px white;
 
 }
+
+
