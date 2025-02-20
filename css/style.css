@@ -323,3 +323,26 @@ a {
     }
 }
 
+.owo {
+  font-weight: bold;
+  font-family: "Zen Dots", serif;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
+  animation: glowEffect 2s ease-in-out infinite alternate;
+}
+
+/* 让描边颜色慢慢变化，制造柔和的亮度变化 */
+@keyframes glowEffect {
+  0% {
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  }
+  100% {
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 1);
+  }
+}
+.bracket-text {
+  font-family: "Times New Roman", serif; /* 你可以换成其他字体 */
+  font-style: italic;
+  color: #555; /* 你也可以改变颜色 */
+}
+

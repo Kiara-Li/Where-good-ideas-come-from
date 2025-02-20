@@ -13,7 +13,13 @@
     <script src="arrow.js"></script>
 </head>
 <style>
-    /* 当屏幕宽度小于 1024px（进入手机布局）时 */
+    .div1{
+        /* 适用于大屏幕 */
+        grid-area: 1 / 1 / 8 / 36;
+    font-size: calc(2.5vw + 40px); /* 根据屏幕宽度变化字体 */
+  }
+  
+  /* 当屏幕宽度小于 1024px（进入手机布局）时 */
   @media (max-width: 1024px) {
     .parent {
       grid-template-columns: repeat(10, 1fr);
@@ -21,12 +27,12 @@
     }
   
     .div1 {
-      grid-area: 1 / 1 / 8 / 6;
+      grid-area: 1 / 1 /8/ 6;
   
       /* 让字体大小基于网格宽度变化，保证缩放时仍然协调 */
-      font-size: calc(4vw + 30px);
+      font-size: calc(8vw);
     }
-  }
+}
 </style>
 <body>
     <div class="parent">
