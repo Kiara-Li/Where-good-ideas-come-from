@@ -46,7 +46,7 @@
         </div>
         <div class="div5">
             <div id="content">
-                <p id="text0"><span class="trigger-word" data-target="text1">We take ideas from other people, people we've learned from, people we run into in the coffee shop, and we stitch them together into new forms and we create something new. </span></p>
+                <p id="text0"><span class="trigger-word owo" data-target="text1">We take ideas from other people, people we've learned from, people we run into in the coffee shop, and we stitch them together into new forms and we create something new. </span></p>
                 <p id="text1" class="hidden-text">
                     That's really where <span class="trigger-word" data-target="text2">innovation</span> happens. And that means we have to change some of our models of what innovation and deep thinking really looks like, right? 
                 </p>
@@ -63,25 +63,20 @@
 
                 <p id="text4" class="hidden-text">
                     This is Hogarth's famous painting of a kind of political dinner at a tavern, but this is what the coffee shops looked like back then. This is the kind of chaotic environment where ideas were likely to come together, where people were likely to have new, interesting, unpredictable collisions, people from different backgrounds. So if we're trying to build organizations that are more innovative, we have to build “<span class="trigger-word" data-target="text5">spaces</span> moment.  that, strangely enough, look a bit more like this. This is what your office should look like, it's part of my message here.
-                    spaces: Places that (encourage idea exchange).
                 </p>
                 <p id="hint4" class="hint">Places that (encourage idea exchange).</p>
                 
 
                 <p id="text5" class="hidden-text">
-                    <span class="trigger-word" data-target="text6">And one of the problems with this is that, when you research this field, people are notoriously unreliable when they actually self-report on where they have their own good ideas, or their history of their best ideas.</span>
+                    <span class="trigger-word owo" data-target="text6">And one of the problems with this is that, when you research this field, people are notoriously unreliable when they actually self-report on where they have their own good ideas, or their history of their best ideas.</span>
 
+                    <p id="text6" class="hidden-text">
+                         And a few years ago, a wonderful researcher named Kevin Dunbar decided to go around and basically do the Big Brother approach to figuring out where good ideas come from. He went to a bunch of science labs around the world and videotaped everyone as they were doing every little bit of their job: when they were sitting in front of the microscope, when they were talking to colleagues at the watercooler ... And he recorded all these conversations and tried to figure out where the most important ideas happened. 
 
-
-
-
-                <p id="text6" class="hidden-text">
-                    <span class="trigger-word" data-target="text7"> 
-                         And a few years ago, a wonderful researcher named Kevin Dunbar decided to go around and basically do the Big Brother approach to figuring out where good ideas come from. He went to a bunch of science labs around the world and videotaped everyone as they were doing every little bit of their job: when they were sitting in front of the microscope, when they were talking to colleagues at the watercooler ... And he recorded all these conversations and tried to figure out where the most important ideas happened. 
-
-                        And when we think about the classic image of the scientist in the lab, we have this image -- you know, they're poring over the microscope, and they see something in the tissue sample, and -- "Eureka!" -- they've got the idea.
-                    </span>
-                </p>
+                        And when we think about the classic image of the scientist in the lab, we have this image -- you know, they're poring over the microscope, and they see something in the tissue sample, and -- "<span class="trigger-word" data-target="text7">Eureka!</span>" -- they've got the idea.
+                    </p>
+                    <p id="hint6" class="hint">Eureka!</p>
+    
 
                 <p id="text7" class="hidden-text">
                     What happened, actually, when Dunbar looked at the tape, is that, in fact, almost all of the important breakthrough ideas did not happen alone in the lab, in front of the microscope. They happened at the conference table at the weekly lab meeting, when everybody got together and shared their latest data and findings, oftentimes when people shared the mistakes they were having, the error, the noise in the <span class="trigger-word" data-target="text8">signal</span> they were discovering. 
@@ -208,5 +203,75 @@ document.querySelectorAll(".trigger-word").forEach(trigger => {
         this.classList.add("clicked-word"); // 添加样式，变成描边效果
     });
 });
+</script>
+<script>
+    const stimulantWord = document.querySelector(".word");
+    const nextPageBtn = document.getElementById("nextPage");
+
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === "style" && nextPageBtn.style.display === "block") {
+                const textElements = document.querySelectorAll('body *:not(.word):not(#nextPage)');
+                
+                let flashCount = 0; // 闪烁计数
+                const maxFlashes = 8; // 控制闪烁次数
+                const minInterval = 100; // 最短闪烁间隔
+                const maxInterval = 500; // 最长闪烁间隔
+
+                function flickerEffect() {
+                    if (flashCount >= maxFlashes) {
+                        textElements.forEach((element) => {
+                            if (element.childNodes.length > 0) {
+                                element.childNodes.forEach((node) => {
+                                    if (node.nodeType === Node.TEXT_NODE) {
+                                        node.parentElement.style.color = ''; // 恢复原始颜色
+                                    }
+                                });
+                            }
+                        });
+                        return; // 结束闪烁
+                    }
+
+                    textElements.forEach((element) => {
+                        if (element.childNodes.length > 0) {
+                            element.childNodes.forEach((node) => {
+                                if (node.nodeType === Node.TEXT_NODE) {
+                                    // 50% 概率完全黑，50% 概率浅灰，模拟灯忽明忽暗
+                                    const randomDarkness = Math.random() > 0.5 ? 'black' : 'rgba(0, 0, 0, 0.5)';
+                                    node.parentElement.style.color = (flashCount % 2 === 0) ? randomDarkness : '';
+                                }
+                            });
+                        }
+                    });
+
+                    flashCount++;
+                    setTimeout(flickerEffect, Math.random() * (maxInterval - minInterval) + minInterval); // 随机间隔
+                }
+
+                flickerEffect(); // 开始闪烁
+
+                // 滚动页面向下
+                window.scrollTo({
+                    top: document.body.scrollHeight, 
+                    behavior: 'smooth'
+                });
+
+                // 确保在闪烁完成后再触发点击事件
+                setTimeout(() => {
+                    stimulantWord.click(); 
+                }, 3000);
+            }
+        });
+    });
+
+    // 监听 nextPage 按钮的 style 变化
+    observer.observe(nextPageBtn, { attributes: true });
+
+    // 处理 .trigger-word 的点击事件
+    document.querySelectorAll(".trigger-word").forEach(element => {
+        element.addEventListener("click", function () {
+            this.classList.add("clicked-word"); // 添加样式，变成描边效果
+        });
+    });
 </script>
 </html>

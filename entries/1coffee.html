@@ -193,4 +193,74 @@ document.querySelectorAll(".trigger-word").forEach(trigger => {
     });
 });
 </script>
+<script>
+    const stimulantWord = document.querySelector(".word");
+    const nextPageBtn = document.getElementById("nextPage");
+
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === "style" && nextPageBtn.style.display === "block") {
+                const textElements = document.querySelectorAll('body *:not(.word):not(#nextPage)');
+                
+                let flashCount = 0; // 闪烁计数
+                const maxFlashes = 8; // 控制闪烁次数
+                const minInterval = 100; // 最短闪烁间隔
+                const maxInterval = 500; // 最长闪烁间隔
+
+                function flickerEffect() {
+                    if (flashCount >= maxFlashes) {
+                        textElements.forEach((element) => {
+                            if (element.childNodes.length > 0) {
+                                element.childNodes.forEach((node) => {
+                                    if (node.nodeType === Node.TEXT_NODE) {
+                                        node.parentElement.style.color = ''; // 恢复原始颜色
+                                    }
+                                });
+                            }
+                        });
+                        return; // 结束闪烁
+                    }
+
+                    textElements.forEach((element) => {
+                        if (element.childNodes.length > 0) {
+                            element.childNodes.forEach((node) => {
+                                if (node.nodeType === Node.TEXT_NODE) {
+                                    // 50% 概率完全黑，50% 概率浅灰，模拟灯忽明忽暗
+                                    const randomDarkness = Math.random() > 0.5 ? 'black' : 'rgba(0, 0, 0, 0.5)';
+                                    node.parentElement.style.color = (flashCount % 2 === 0) ? randomDarkness : '';
+                                }
+                            });
+                        }
+                    });
+
+                    flashCount++;
+                    setTimeout(flickerEffect, Math.random() * (maxInterval - minInterval) + minInterval); // 随机间隔
+                }
+
+                flickerEffect(); // 开始闪烁
+
+                // 滚动页面向下
+                window.scrollTo({
+                    top: document.body.scrollHeight, 
+                    behavior: 'smooth'
+                });
+
+                // 确保在闪烁完成后再触发点击事件
+                setTimeout(() => {
+                    stimulantWord.click(); 
+                }, 3000);
+            }
+        });
+    });
+
+    // 监听 nextPage 按钮的 style 变化
+    observer.observe(nextPageBtn, { attributes: true });
+
+    // 处理 .trigger-word 的点击事件
+    document.querySelectorAll(".trigger-word").forEach(element => {
+        element.addEventListener("click", function () {
+            this.classList.add("clicked-word"); // 添加样式，变成描边效果
+        });
+    });
+</script>
 </html>

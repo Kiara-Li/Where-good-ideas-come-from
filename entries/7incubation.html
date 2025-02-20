@@ -46,14 +46,14 @@
         </div>
         <div class="div5">
             <div id="content">
-                <p id="text0"><span class="trigger-word" data-target="text1">The other problem that people have is, they like to condense their stories of innovation down to shorter time frames. </span></p>
+                <p id="text0"><span class="trigger-word owo" data-target="text1">The other problem that people have is, they like to condense their stories of innovation down to shorter time frames. </span></p>
                 <p id="text1" class="hidden-text">
-                    So they want to tell the story of the “<span class="trigger-word" data-target="text2">"eureka"</span> moment. They want to say, "There I was, I was standing there, and I had it all, suddenly, clear in my head." But, in fact, if you go back and look at the historical record, it turns out that a lot of important ideas have very long incubation periods. 
+                    So they want to tell the story of the <span class="trigger-word" data-target="text2">"eureka</span>" moment. They want to say, "There I was, I was standing there, and I had it all, suddenly, clear in my head." But, in fact, if you go back and look at the historical record, it turns out that a lot of important ideas have very long incubation periods. 
                 </p>
                 <p id="hint1" class="hint">eureka</p>
 
                 <p id="text2" class="hidden-text">
-                    I call this the <span class="trigger-word" data-target="text3">"slow hunch"</span>." We've heard a lot recently about hunch and instinct and blink-like sudden moments of clarity, but, in fact, a lot of great ideas linger on, sometimes for decades, in the back of people's minds. 
+                    I call this the <span class="trigger-word" data-target="text3">"slow hunch"</span>.  We've heard a lot recently about hunch and instinct and blink-like sudden moments of clarity, but, in fact, a lot of great ideas linger on, sometimes for decades, in the back of people's minds. 
                 </p>
                 <p id="hint2" class="hint">slow hunch</p>
         
@@ -63,16 +63,12 @@
                 <p id="hint3" class="hint">The (extended period) ideas need to mature.</p>
 
                 <p id="text4" class="hidden-text">
-                    Darwin is a great example of this. Darwin himself, in his autobiography, tells the story of coming up with the idea for natural selection as a classic “<span class="trigger-word" data-target="text5">eureka</span> moment. 
+                    Darwin is a great example of this. Darwin himself, in his autobiography, tells the story of coming up with the idea for natural selection as a classic "<span class="trigger-word" data-target="text5">eureka</span>" moment. 
                 </p>
                 <p id="hint4" class="hint">eureka!</p>
 
                 <p id="text5" class="hidden-text">
-                    <span class="trigger-word" data-target="text6">He's in his study, it's October of 1838, and he's reading Malthus, actually, on population. And all of a sudden, the basic algorithm of natural selection kind of pops into his head, and he says, "Ah, at last, I had a theory with which to work." That's in his autobiography. About a decade or two ago, a wonderful scholar named Howard Gruber went back and looked at Darwin's notebooks from this period. Darwin kept these copious notebooks, where he wrote down every little idea he had, every little hunch. And what Gruber found was that Darwin had the full theory of natural selection for months and months and months before he had his alleged epiphany reading Malthus in October of 1838. There are passages where you can read it, and you think you're reading from a Darwin textbook, from the period before he has his epiphany. And so what you realize is that Darwin, in a sense, had the idea, he had the concept, but was unable to fully think it yet. </span>
-
-
-
-
+                    He's in his study, it's October of 1838, and he's reading Malthus, actually, on population. And all of a sudden, the basic algorithm of natural selection kind of pops into his head, and he says, "Ah, at last, I had a theory with which to work." That's in his autobiography. About a decade or two ago, a wonderful scholar named Howard Gruber went back and looked at Darwin's notebooks from this period. Darwin kept these copious notebooks, where he wrote down every little idea he had, every little <span class="trigger-word owo" data-target="text6">hunch </span>. And what Gruber found was that Darwin had the full theory of natural selection for months and months and months before he had his alleged epiphany reading Malthus in October of 1838. There are passages where you can read it, and you think you're reading from a Darwin textbook, from the period before he has his epiphany. And so what you realize is that Darwin, in a sense, had the idea, he had the concept, but was unable to fully think it yet. </span>
 
                 <p id="text6" class="hidden-text">
                     And that is, actually, how great ideas often happen -- they fade into view over long periods of <span class="trigger-word" data-target="text7">time</span>
@@ -208,5 +204,75 @@ document.querySelectorAll(".trigger-word").forEach(trigger => {
         this.classList.add("clicked-word"); // 添加样式，变成描边效果
     });
 });
+</script>
+<script>
+    const stimulantWord = document.querySelector(".word");
+    const nextPageBtn = document.getElementById("nextPage");
+
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === "style" && nextPageBtn.style.display === "block") {
+                const textElements = document.querySelectorAll('body *:not(.word):not(#nextPage)');
+                
+                let flashCount = 0; // 闪烁计数
+                const maxFlashes = 8; // 控制闪烁次数
+                const minInterval = 100; // 最短闪烁间隔
+                const maxInterval = 500; // 最长闪烁间隔
+
+                function flickerEffect() {
+                    if (flashCount >= maxFlashes) {
+                        textElements.forEach((element) => {
+                            if (element.childNodes.length > 0) {
+                                element.childNodes.forEach((node) => {
+                                    if (node.nodeType === Node.TEXT_NODE) {
+                                        node.parentElement.style.color = ''; // 恢复原始颜色
+                                    }
+                                });
+                            }
+                        });
+                        return; // 结束闪烁
+                    }
+
+                    textElements.forEach((element) => {
+                        if (element.childNodes.length > 0) {
+                            element.childNodes.forEach((node) => {
+                                if (node.nodeType === Node.TEXT_NODE) {
+                                    // 50% 概率完全黑，50% 概率浅灰，模拟灯忽明忽暗
+                                    const randomDarkness = Math.random() > 0.5 ? 'black' : 'rgba(0, 0, 0, 0.5)';
+                                    node.parentElement.style.color = (flashCount % 2 === 0) ? randomDarkness : '';
+                                }
+                            });
+                        }
+                    });
+
+                    flashCount++;
+                    setTimeout(flickerEffect, Math.random() * (maxInterval - minInterval) + minInterval); // 随机间隔
+                }
+
+                flickerEffect(); // 开始闪烁
+
+                // 滚动页面向下
+                window.scrollTo({
+                    top: document.body.scrollHeight, 
+                    behavior: 'smooth'
+                });
+
+                // 确保在闪烁完成后再触发点击事件
+                setTimeout(() => {
+                    stimulantWord.click(); 
+                }, 3000);
+            }
+        });
+    });
+
+    // 监听 nextPage 按钮的 style 变化
+    observer.observe(nextPageBtn, { attributes: true });
+
+    // 处理 .trigger-word 的点击事件
+    document.querySelectorAll(".trigger-word").forEach(element => {
+        element.addEventListener("click", function () {
+            this.classList.add("clicked-word"); // 添加样式，变成描边效果
+        });
+    });
 </script>
 </html>

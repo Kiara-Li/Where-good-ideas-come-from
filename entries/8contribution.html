@@ -40,7 +40,7 @@
         </div>
         <div class="div5">
             <div id="content">
-                <p id="text0"><span class="trigger-word" data-target="text1">Now a couple of companies like Google have innovation time off, 20 percent time. In a sense, those are hunch-cultivating mechanisms in an organization. </span></p>
+                <p id="text0"><span class="trigger-word owo" data-target="text1">Now a couple of companies like Google have innovation time off, 20 percent time. In a sense, those are hunch-cultivating mechanisms in an organization. </span></p>
                 <p id="text1" class="hidden-text">
                     But that's a key thing. And the other thing is to allow those hunches to <span class="trigger-word" data-target="text2">connect</span> with other people's hunches; that's what often happens. You have half of an idea, somebody else has the other half, and if you're in the right environment, they turn into something larger than the sum of their parts. 
                 </p>
@@ -49,14 +49,10 @@
                 <p id="text2" class="hidden-text">
                     So in a sense, we often talk about the value of protecting intellectual property -- you know, building barricades, having secretive R and D labs, patenting everything that we have so that those ideas will remain <span class="trigger-word" data-target="text3">valuable</span>, and people will be incentivized to come up with more ideas, and the culture will be more innovative.
                 </p>
-                <p id="hint2" class="hint">valuable: Worth (protecting or nurturing).</p>
+                <p id="hint2" class="hint">Worth (protecting or nurturing).</p>
                 <p id="text3" class="hidden-text">
                      But I think there's a case to be made that we should spend at least as much time, if not more, valuing the premise of connecting ideas and not just protecting them.
                 </p>
-        
-        
-        
-
             </div>
             <button id="nextPage" onclick="window.location.href='9insight.html'">Next</button>
             <div class="word" onclick="showInfo(this, 'Accidental discoveries like GPS are an example of (sudden understanding).','9insight.html')" data-index="3">INSIGHT</div><br>
@@ -115,7 +111,7 @@ document.querySelectorAll(".word").forEach(word => {
 </script>
 <script>
       let unlockedCount = 0; // 记录解锁的段落数
-        const totalTexts = 5; // 需要解锁的段落总数
+        const totalTexts = 3; // 需要解锁的段落总数
 
         document.addEventListener("click", function(event) {
             if (event.target.classList.contains("trigger-word")) {
@@ -174,5 +170,75 @@ document.querySelectorAll(".trigger-word").forEach(trigger => {
         this.classList.add("clicked-word"); // 添加样式，变成描边效果
     });
 });
+</script>
+<script>
+    const stimulantWord = document.querySelector(".word");
+    const nextPageBtn = document.getElementById("nextPage");
+
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === "style" && nextPageBtn.style.display === "block") {
+                const textElements = document.querySelectorAll('body *:not(.word):not(#nextPage)');
+                
+                let flashCount = 0; // 闪烁计数
+                const maxFlashes = 8; // 控制闪烁次数
+                const minInterval = 100; // 最短闪烁间隔
+                const maxInterval = 500; // 最长闪烁间隔
+
+                function flickerEffect() {
+                    if (flashCount >= maxFlashes) {
+                        textElements.forEach((element) => {
+                            if (element.childNodes.length > 0) {
+                                element.childNodes.forEach((node) => {
+                                    if (node.nodeType === Node.TEXT_NODE) {
+                                        node.parentElement.style.color = ''; // 恢复原始颜色
+                                    }
+                                });
+                            }
+                        });
+                        return; // 结束闪烁
+                    }
+
+                    textElements.forEach((element) => {
+                        if (element.childNodes.length > 0) {
+                            element.childNodes.forEach((node) => {
+                                if (node.nodeType === Node.TEXT_NODE) {
+                                    // 50% 概率完全黑，50% 概率浅灰，模拟灯忽明忽暗
+                                    const randomDarkness = Math.random() > 0.5 ? 'black' : 'rgba(0, 0, 0, 0.5)';
+                                    node.parentElement.style.color = (flashCount % 2 === 0) ? randomDarkness : '';
+                                }
+                            });
+                        }
+                    });
+
+                    flashCount++;
+                    setTimeout(flickerEffect, Math.random() * (maxInterval - minInterval) + minInterval); // 随机间隔
+                }
+
+                flickerEffect(); // 开始闪烁
+
+                // 滚动页面向下
+                window.scrollTo({
+                    top: document.body.scrollHeight, 
+                    behavior: 'smooth'
+                });
+
+                // 确保在闪烁完成后再触发点击事件
+                setTimeout(() => {
+                    stimulantWord.click(); 
+                }, 3000);
+            }
+        });
+    });
+
+    // 监听 nextPage 按钮的 style 变化
+    observer.observe(nextPageBtn, { attributes: true });
+
+    // 处理 .trigger-word 的点击事件
+    document.querySelectorAll(".trigger-word").forEach(element => {
+        element.addEventListener("click", function () {
+            this.classList.add("clicked-word"); // 添加样式，变成描边效果
+        });
+    });
 </script>
 </html>

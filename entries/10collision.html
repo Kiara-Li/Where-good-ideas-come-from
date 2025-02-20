@@ -40,7 +40,7 @@
         </div>
         <div class="div5">
             <div id="content">
-                <p id="text0"><span class="trigger-word" data-target="text1">And that, I think, is a great case study, a great lesson in the power -- the marvelous, unplanned, emergent, unpredictable power -- of open innovative systems. </span></p>
+                <p id="text0"><span class="trigger-word owo" data-target="text1">And that, I think, is a great case study, a great lesson in the power -- the marvelous, unplanned, emergent, unpredictable power -- of open innovative systems. </span></p>
                 <p id="text1" class="hidden-text">
                     When you build them right, they will be led to completely new directions the creators never even dreamed of. I mean, here you have these guys who basically thought they were just following this <span class="trigger-word" data-target="text2">hunch</span>, this little passion that had developed, then they thought they were fighting the Cold War, and then, it turns out, they're just helping somebody find a soy latte.
                 </p>
@@ -49,9 +49,6 @@
                     That is how innovation happens. 
                 </p>
         
-        
-        
-
             </div>
             <button id="nextPage" onclick="window.location.href='../final.html'">Next</button>
             <div class="word" onclick="showInfo(this, '???','../final.html')" data-index="2">CONNECTION</div><br>
@@ -110,7 +107,7 @@ document.querySelectorAll(".word").forEach(word => {
 </script>
 <script>
       let unlockedCount = 0; // 记录解锁的段落数
-        const totalTexts = 5; // 需要解锁的段落总数
+        const totalTexts = 2; // 需要解锁的段落总数
 
         document.addEventListener("click", function(event) {
             if (event.target.classList.contains("trigger-word")) {
@@ -169,5 +166,75 @@ document.querySelectorAll(".trigger-word").forEach(trigger => {
         this.classList.add("clicked-word"); // 添加样式，变成描边效果
     });
 });
+</script>
+<script>
+    const stimulantWord = document.querySelector(".word");
+    const nextPageBtn = document.getElementById("nextPage");
+
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === "style" && nextPageBtn.style.display === "block") {
+                const textElements = document.querySelectorAll('body *:not(.word):not(#nextPage)');
+                
+                let flashCount = 0; // 闪烁计数
+                const maxFlashes = 8; // 控制闪烁次数
+                const minInterval = 100; // 最短闪烁间隔
+                const maxInterval = 500; // 最长闪烁间隔
+
+                function flickerEffect() {
+                    if (flashCount >= maxFlashes) {
+                        textElements.forEach((element) => {
+                            if (element.childNodes.length > 0) {
+                                element.childNodes.forEach((node) => {
+                                    if (node.nodeType === Node.TEXT_NODE) {
+                                        node.parentElement.style.color = ''; // 恢复原始颜色
+                                    }
+                                });
+                            }
+                        });
+                        return; // 结束闪烁
+                    }
+
+                    textElements.forEach((element) => {
+                        if (element.childNodes.length > 0) {
+                            element.childNodes.forEach((node) => {
+                                if (node.nodeType === Node.TEXT_NODE) {
+                                    // 50% 概率完全黑，50% 概率浅灰，模拟灯忽明忽暗
+                                    const randomDarkness = Math.random() > 0.5 ? 'black' : 'rgba(0, 0, 0, 0.5)';
+                                    node.parentElement.style.color = (flashCount % 2 === 0) ? randomDarkness : '';
+                                }
+                            });
+                        }
+                    });
+
+                    flashCount++;
+                    setTimeout(flickerEffect, Math.random() * (maxInterval - minInterval) + minInterval); // 随机间隔
+                }
+
+                flickerEffect(); // 开始闪烁
+
+                // 滚动页面向下
+                window.scrollTo({
+                    top: document.body.scrollHeight, 
+                    behavior: 'smooth'
+                });
+
+                // 确保在闪烁完成后再触发点击事件
+                setTimeout(() => {
+                    stimulantWord.click(); 
+                }, 3000);
+            }
+        });
+    });
+
+    // 监听 nextPage 按钮的 style 变化
+    observer.observe(nextPageBtn, { attributes: true });
+
+    // 处理 .trigger-word 的点击事件
+    document.querySelectorAll(".trigger-word").forEach(element => {
+        element.addEventListener("click", function () {
+            this.classList.add("clicked-word"); // 添加样式，变成描边效果
+        });
+    });
 </script>
 </html>
