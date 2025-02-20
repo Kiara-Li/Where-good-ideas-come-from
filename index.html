@@ -42,7 +42,19 @@
             </div>
         </div>
     </div>
-
+<!-- Modal Structure -->
+<div id="eureka-modal" class="modal">
+    <div class="modal-content">
+        <div class="text-container">
+            <p>This Art Booklet — I mean Guide to the Beyond</p>
+            <p>was made specially by Dante</p>
+            <p>to familiarize new Souls to the Afterlife</p>
+            <p>and teach them about the adventure</p>
+            <p>they've embarked upon.<span class="close-btn">&times;</span></p>
+        </div>
+        </p>
+    </div>
+</div>
 </body>
  <script>
 function showInfo(element, text, url) {
@@ -93,6 +105,25 @@ document.querySelectorAll(".word").forEach(word => {
     });
 });
 </script>
-
+<!-- JavaScript to Control Modal -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const eurekaButton = document.querySelector(".outline"); // 选择 EUREKA 按钮
+        const modal = document.getElementById("eureka-modal");
+        const closeButton = document.querySelector(".close-btn");
+        const div4 = document.querySelector(".div4");
+    
+        eurekaButton.addEventListener("click", function() {
+            const rect = div4.getBoundingClientRect();
+            modal.style.top = rect.bottom + "px"; // 让 modal 出现在 div4 正下方
+            modal.style.left = rect.left + "px";
+            modal.style.display = "block";
+        });
+    
+        closeButton.addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+    });
+    </script>
 
 </html>

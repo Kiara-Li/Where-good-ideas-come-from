@@ -323,26 +323,58 @@ a {
     }
 }
 
-.owo {
-  font-weight: bold;
-  font-family: "Zen Dots", serif;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
-  animation: glowEffect 2s ease-in-out infinite alternate;
+.modal {
+  font-family: "Space Grotesk", sans-serif;
+  display: none;
+  position: absolute;
+  background: transparent;
+  color: white;
+  padding: 4px 10px; 
+  border-radius: 10px;
+  border: 2px solid white;
+  z-index: 1000;
+  width: 80%;
+  max-width: 300px;
+  font-size: clamp(16px, 1vw, 16px);
+  overflow: hidden;
+  max-height: 40px; 
+  top: calc(100% + 10px); 
+}
+.modal-content {
+  position: relative;
+  padding: 10px;
+  text-align: center;
+  max-height: 30px; /* 根据需求调整 */
+  overflow-y: auto;  /* 允许垂直滚动 */
+  scroll-snap-type: y mandatory; 
+  
+}
+.text-container p {
+  margin: 0;
+  padding: 10px 0;
+  height: 20px; /* 每句话的高度要和 modal-content 一致 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start; /* 滚动时停留在每句话 */
 }
 
-/* 让描边颜色慢慢变化，制造柔和的亮度变化 */
-@keyframes glowEffect {
-  0% {
-      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
-  }
-  100% {
-      -webkit-text-stroke: 1px rgba(255, 255, 255, 1);
+.close-btn {
+  display: inline-block; /* 让它成为文本流的一部分 */
+  margin-left: 20px; /* 与句号保持一点间距 */
+  font-size: 20px;
+  cursor: pointer;
+  background: white; 
+  color: black;
+  border-radius: 4px;
+  padding: 0.25px 4px;
+}
+@media (max-width: 1024px) {
+  .modal {
+      width: 80%;
+      left: 50%;
+      transform: translateX(-50%);
   }
 }
-.bracket-text {
-  font-family: "Times New Roman", serif; /* 你可以换成其他字体 */
-  font-style: italic;
-  color: #555; /* 你也可以改变颜色 */
-}
+
 
