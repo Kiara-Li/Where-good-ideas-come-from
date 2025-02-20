@@ -12,10 +12,12 @@
     <script src="arrow.js"></script>
 </head>
 <style>
-    .highlight {
-    color: rgb(255, 255, 255); /* 你可以改成你喜欢的颜色 */
-    font-weight: bold;
-}
+.highlight{color: black;}
+
+body {
+            background-color: black; /* 初始背景黑色 */
+            transition: background-color 0.5s ease-in-out; /* 0.5秒内渐变 */
+        }
 .div5 {
     display: flex;
     flex-direction: column;
@@ -67,7 +69,7 @@
   }
 
   .innovation-text {
-    font-size: 36px; /* 手机端稍微缩小字号 */
+    font-size: 40px; /* 手机端稍微缩小字号 */
   }
 }
 
@@ -115,8 +117,8 @@
     </div>
 </div>
 <div class="div6">
-    <p class="innovation-text">Innovation comes from connected minds</p>
-    <button class="back-to-home" onclick="goToHomePage()">Return to Home</button>
+    <p class="innovation-text">Chance favors the connected mind.</p>
+    <a class="back-to-home" href="index.html">Return to Home</a>
 </div>
 </body>
  <script>
@@ -168,25 +170,24 @@ document.querySelectorAll(".word").forEach(word => {
     });
 });
 </script>
-<!-- JavaScript to Control Modal -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const eurekaButton = document.querySelector(".outline"); // 选择 EUREKA 按钮
-        const modal = document.getElementById("eureka-modal");
-        const closeButton = document.querySelector(".close-btn");
-        const div4 = document.querySelector(".div4");
-    
+        const eurekaButton = document.querySelector(".outline");
+
         eurekaButton.addEventListener("click", function() {
-            const rect = div4.getBoundingClientRect();
-            modal.style.top = rect.bottom + "px"; // 让 modal 出现在 div4 正下方
-            modal.style.left = rect.left + "px";
-            modal.style.display = "block";
-        });
-    
-        closeButton.addEventListener("click", function() {
-            modal.style.display = "none";
+            let isBlack = true; // 初始化为黑色
+            const interval = setInterval(() => {
+                document.body.style.backgroundColor = isBlack ? "white" : "black"; // 切换背景颜色
+                isBlack = !isBlack; // 切换状态
+            }, 500); // 每 500 毫秒切换一次
+
+            // 在持续 5 秒后停止切换
+            setTimeout(() => {
+                clearInterval(interval);
+                document.body.style.backgroundColor = "black"; // 最后保持黑色
+            }, 5000);
         });
     });
-    </script>
+</script>
 
 </html>
