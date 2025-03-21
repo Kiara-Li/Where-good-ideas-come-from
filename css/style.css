@@ -70,7 +70,7 @@
   /* 当屏幕宽度小于 1024px（进入手机布局）时 */
   @media (max-width: 1024px) {
     .parent {
-      padding: 25px 15px 5px 15px;
+      padding: 20px 15px 5px 15px;
       grid-template-columns: repeat(10, 1fr);
       grid-template-rows: repeat(46, 1fr);
     }
