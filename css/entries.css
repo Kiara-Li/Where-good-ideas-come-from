@@ -8,6 +8,7 @@
 /* 当屏幕宽度小于 1024px（进入手机布局）时 */
 @media (max-width: 1024px) {
   .parent {
+    padding: 25px 15px 5px 15px;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(69, 1fr); /* 46 × 1.5 = 69 行 */
   }
@@ -16,7 +17,7 @@
   .div2 { grid-area: 1 / 6 / 5 / 11; }
   .div3 { grid-area: 9 / 1 / 11 / 6; }
   .div4 { grid-area: 9 / 6 / 11 / 11; }
-  .div5 { grid-area: 6/ 1 / 55 / 11; }/* 纵向范围扩大 */
+  .div5 { grid-area: 6/ 1 / 35 / 11; }/* 纵向范围扩大 */
 }
 .hidden-text {
     display: none;

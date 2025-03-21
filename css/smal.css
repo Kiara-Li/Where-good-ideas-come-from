@@ -6,9 +6,6 @@
     background: #000000;
     color: white;
   }
-  .parent{
-    padding: 40px 30px 0 30px;
-  }
   .zen-dots-regular {
       font-family: "Zen Dots", serif;
       font-weight: 400;
@@ -46,7 +43,7 @@
   .div2 { grid-area: 4 / 6 / 9 / 11; }
   .div3 { grid-area: 9 / 1 / 11 / 6; }
   .div4 { grid-area: 9 / 6 / 11 / 11; }
-  .div5 { grid-area: 11 / 1 / 35 / 11; }/* 纵向范围扩大 */
+  .div5 { grid-area: 11 / 1 / 55 / 11; }/* 纵向范围扩大 */
 }
 
   .div1 {
@@ -60,17 +57,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: left;
-    margin-right: 20px;
+    text-align: center;
+  
     /* 适用于大屏幕 */
     grid-area: 1 / 1 / 8 / 36;
-    font-size: calc(3vw + 40px); /* 根据屏幕宽度变化字体 */
+    font-size: calc(2.5vw + 40px); /* 根据屏幕宽度变化字体 */
   }
   
   /* 当屏幕宽度小于 1024px（进入手机布局）时 */
   @media (max-width: 1024px) {
     .parent {
-      padding: 25px 15px 5px 15px;
       grid-template-columns: repeat(10, 1fr);
       grid-template-rows: repeat(46, 1fr);
     }
@@ -83,10 +79,9 @@
     }
   }
   .div2 {
-    margin-top: 15px;
     display: flex;
     flex-direction: column;
-    gap: 10px; /* 间距 */
+    gap: 8px; /* 间距 */
     color: white;
     flex-grow: 1; /* 让 .div2 在父容器中可以放大 */
   }
@@ -149,18 +144,9 @@
     transition: all 0.3s ease-in-out; 
     justify-content: center;
     align-items: center;
-    animation: blink 1.5s infinite alternate;
+
 }
-@keyframes blink {
-  0% {
-      border-color: #fff; /* 边框颜色正常 */
-      box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.6); /* 发光效果 */
-  }
-  100% {
-      border-color: rgba(255, 255, 255, 0.5); /* 边框颜色变暗 */
-      box-shadow: 0 0 25px 15px rgba(255, 255, 255, 0.3); /* 更强的发光效果 */
-  }
-}
+
 /* 鼠标悬停效果 */
 .outline:hover {
     color: white;
@@ -265,16 +251,10 @@
 
 /* 当屏幕宽度小于 1024px（手机布局）时 */
 @media (max-width: 1024px) {
-  .div2{
-    margin-left: 15px;
-  }
   .word::after {
     width: 6vw; /* 手机屏幕使用默认大小 */
     height: 6vw;
   }
-  .outline {
-    width: 180px; /* 在屏幕宽度小于 1024px 时缩小 .outline 的宽度 */
-}
 }
 .info-box {
     font-family: "Space Grotesk", serif;
@@ -396,7 +376,3 @@ a {
       transform: translateX(-50%);
   }
 }
-
-
-
-
